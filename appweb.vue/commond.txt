@@ -1,0 +1,30 @@
+
+vue init webpack digits-space.com
+cd digits-space.com
+cnpm i
+
+cnpm i vuex axios -S
+cnpm i node-sass sass-loader -D
+
+cnpm i mint-ui -S
+cnpm i babel-plugin-component -D
+
+# .babelrc
+# {
+#   "presets": [
+#     ["es2015", { "modules": false }]
+#   ],
+#   "plugins": [
+#     ["component", {
+#       "libraryName": "mint-ui",
+#       "style": true
+#     }]
+#   ]
+# }
+
+cnpm i babel-polyfill -S
+
+# cnpm i clipboard -S
+cnpm i vue-clipboards -S
+
+npm start | npm run build

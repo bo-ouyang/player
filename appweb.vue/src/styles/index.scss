@@ -1,0 +1,456 @@
+@import './defines';
+@import './cleanup';
+@import './iconfont';
+@import './animate';
+@import './element';
+@import './stygroup';
+
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+// 去掉iOS点击效果
+a,
+button,
+.btn {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ----- 1px边框 ----- */
+
+.bod {
+  &-t-1px,
+  &-r-1px,
+  &-b-1px,
+  &-l-1px,
+  &-tb-1px,
+  &-lr-1px,
+  &-cell-1px {
+    position: relative;
+  }
+  &-t-1px:before,
+  &-r-1px:after,
+  &-b-1px:after,
+  &-l-1px:before,
+  &-tb-1px:before,
+  &-tb-1px:after,
+  &-lr-1px:before,
+  &-lr-1px:after,
+  &-cell-1px:before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+  }
+  &-t-1px:before,
+  &-r-1px:after,
+  &-b-1px:after,
+  &-l-1px:before,
+  &-tb-1px:before,
+  &-tb-1px:after,
+  &-lr-1px:before,
+  &-lr-1px:after {
+    background-color: $border-color;
+  }
+  &-t-1px::before,
+  &-b-1px:after,
+  &-tb-1px:before,
+  &-tb-1px:after {
+    left: 0;
+    width: 100%;
+    height: 1px;
+  }
+  &-t-1px:before,
+  &-tb-1px:before {
+    top: 0;
+  }
+  &-b-1px:after,
+  &-tb-1px:after {
+    bottom: 0;
+  }
+  &-l-1px:before,
+  &-r-1px:after,
+  &-lr-1px:before,
+  &-lr-1px:after {
+    top: 0;
+    width: 1px;
+    height: 100%;
+  }
+  &-l-1px:before,
+  &-lr-1px:before {
+    left: 0;
+  }
+  &-r-1px:after,
+  &-lr-1px:after {
+    right: 0;
+  }
+  &-cell-1px:before {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+  }
+  &--circle:before {
+    border-radius: 50% !important;
+  }
+
+  &-tbl {
+    &t-1px,
+    &r-1px + &r-1px {
+      // @include box-shadow(0 -1px 0 0 rgba($color: $border-color, $alpha: 0.6));
+      @include box-shadow(0 -1px 1px -1px $border-color);
+    }
+    &b-1px {
+      // @include box-shadow(0 1px 0 0 rgba($color: $border-color, $alpha: 0.6));
+      @include box-shadow(0 1px 1px -1px $border-color);
+    }
+  }
+
+  @media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 2dppx) {
+    $scale: 1 / 2;
+
+    // &-t-1px::before,
+    // &-b-1px:after,
+    // &-tb-1px:before,
+    // &-tb-1px:after {
+    //   height: 2px;
+    // }
+    &-t-1px:before,
+    &-tb-1px:before {
+      @include transform(scaleY($scale), 0 0);
+    }
+    &-b-1px:after,
+    &-tb-1px:after {
+      @include transform(scaleY($scale), 0 100%);
+    }
+    // &-l-1px:before,
+    // &-r-1px:after,
+    // &-lr-1px:before,
+    // &-lr-1px:after {
+    //   width: 2px;
+    // }
+    &-l-1px:before,
+    &-lr-1px:before {
+      @include transform(scaleX($scale), 0 0);
+    }
+    &-r-1px:after,
+    &-lr-1px:after {
+      @include transform(scaleX($scale), 100% 0);
+    }
+    &-cell-1px:before {
+      width: 200%;
+      height: 200%;
+      // border-width: 2px;
+      border-radius: 8px;
+      @include transform(scale($scale), 0 0);
+    }
+  }
+  @media screen and (-webkit-min-device-pixel-ratio: 3), screen and (min-resolution: 3dppx) {
+    $scale: 1 / 3;
+
+    // &-t-1px::before,
+    // &-b-1px:after,
+    // &-tb-1px:before,
+    // &-tb-1px:after {
+    //   height: 3px;
+    // }
+    &-t-1px:before,
+    &-tb-1px:before {
+      @include transform(scaleY($scale), 0 0);
+    }
+    &-b-1px:after,
+    &-tb-1px:after {
+      @include transform(scaleY($scale), 0 100%);
+    }
+    // &-l-1px:before,
+    // &-r-1px:after,
+    // &-lr-1px:before,
+    // &-lr-1px:after {
+    //   width: 3px;
+    // }
+    &-l-1px:before,
+    &-lr-1px:before {
+      @include transform(scaleX($scale), 0 0);
+    }
+    &-r-1px:after,
+    &-lr-1px:after {
+      @include transform(scaleX($scale), 100% 0);
+    }
+    &-cell-1px:before {
+      width: 300%;
+      height: 300%;
+      // border-width: 3px;
+      border-radius: 12px;
+      @include transform(scale($scale), 0 0);
+    }
+  }
+}
+
+/* ----- ----- */
+
+.flex {
+  &-box {
+    @include display-flex;
+
+    &.m--center {
+      @include flex-align(center);
+    }
+  }
+  &-column {
+    @include display-flex;
+    @include flex-direction(column);
+  }
+  &-grown {
+    @include flex-grow(1);
+
+    &.m--ellipsis {
+      overflow: hidden;
+    }
+  }
+  &-equal {
+    @include flex-grow(1);
+    width: 100%;
+  }
+  &-fixed {
+    @include flex-shrink(0);
+  }
+}
+
+.scrollbox {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  &-inner {
+    min-height: calc(100% + 1px);
+  }
+  &-horz {
+    overflow: hidden;
+    overflow-x: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.posit {
+  &-ab {
+    position: absolute;
+  }
+  &-re {
+    position: relative;
+  }
+}
+.align {
+  &-horz {
+    position: absolute;
+    left: 50%;
+    @include transform(translateX(-50%));
+  }
+  &-vert {
+    position: absolute;
+    top: 50%;
+    @include transform(translateY(-50%));
+  }
+  &-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include transform(translate(-50%, -50%));
+  }
+  &-l {
+    text-align: left;
+  }
+  &-c {
+    text-align: center;
+  }
+  &-r {
+    text-align: right;
+  }
+}
+.float {
+  &-l {
+    float: left;
+  }
+  &-r {
+    float: right;
+  }
+}
+.clearfix:after {
+	clear: both;
+  content: "";
+	display: block;
+	height: 0;
+	font-size: 0;
+	visibility: hidden;
+}
+
+.padd {
+  &-page {
+    padding: $page-padding;
+  }
+  &-wide {
+    padding: $wide-padding $page-padding;
+  }
+  &-away {
+    padding: $away-padding $page-padding;
+  }
+  &-h {
+    &-page {
+      @include padding-lr($page-padding);
+    }
+  }
+  &-v {
+    &-page {
+      @include padding-tb($page-padding);
+    }
+    &-wide {
+      @include padding-tb($wide-padding);
+    }
+    &-away {
+      @include padding-tb($away-padding);
+    }
+    &-item {
+      @include padding-tb($item-padding);
+    }
+  }
+}
+.marg {
+  &-v {
+    &-wide {
+      @include margin-tb($wide-padding);
+    }
+    &-item {
+      @include margin-tb($item-padding);
+    }
+  }
+  &-t {
+    &-page {
+      margin-top: $page-padding;
+    }
+    &-item {
+      margin-top: $item-padding;
+    }
+  }
+}
+
+.fc {
+  &-page {
+    color: $font-color;
+  }
+  &-rise {
+    color: $rise-color;
+  }
+  &-fall {
+    color: $fall-color;
+  }
+  &-title {
+    color: $title-color;
+  }
+  &-tabon {
+    color: $tabon-color;
+  }
+  // &-warn {
+  //   color: $warn-color;
+  // }
+  &-text {
+    color: $text-color;
+  }
+  &-tipe {
+    color: $tipe-color;
+  }
+}
+.fs {
+  &-name {
+    font-size: $name-size;
+  }
+  &-sign {
+    font-size: $sign-size;
+  }
+  &-page {
+    font-size: $font-size;
+  }
+  &-small {
+    font-size: $small-size;
+  }
+  &-large {
+    font-size: $large-size;
+  }
+  &-mins {
+    font-size: $mins-size;
+  }
+}
+.bg {
+  &-contain {
+    @include background-contain;
+  }
+  &-panel {
+    background-color: $panel-bgColor;
+  }
+  &-page {
+    background-color: $page-bgColor
+  }
+  // &-image {
+  //   background-color: $image-bgColor;
+  // }
+  &-rise {
+    background-color: $rise-color;
+  }
+  &-fall {
+    background-color: $fall-color;
+  }
+}
+
+.text {
+  // ***** 文章内容 ***** //
+  &-content {
+    padding: $cell-padding $page-padding;
+    text-align: justify;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    li {
+      margin-top: 0.2em;
+      margin-bottom: 0.2em;
+    }
+    .txt-zh {
+      text-indent: 2em;
+    }
+    .txt-chp {
+      margin-top: 1em;
+    }
+    .txt-pag {
+      margin-top: 0.5em;
+    }
+  }
+
+  &-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &:hover {
+      white-space: normal;
+      overflow: visible;
+    }
+  }
+  &-breakword {
+    word-wrap: break-word;
+  }
+  &-preview {
+    font-family: inherit;
+    line-height: 1.35;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+}

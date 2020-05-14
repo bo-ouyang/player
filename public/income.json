@@ -1,0 +1,20 @@
+[
+  {
+    "user_id": 2332,
+    "foreign_id": 59898,
+    "type": 1,
+    "amount": "0.500000000000",
+    "day": "2019-10-11",
+    "create_time": 1570779438,
+    "to_user_id": 2332
+  },
+  {
+    "user_id": 2333,
+    "foreign_id": 59899,
+    "type": 3,
+    "amount": "0.250000000000",
+    "day": "2019-10-11",
+    "create_time": 1570779438,
+    "to_user_id": 2332
+  }
+]

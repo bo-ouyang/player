@@ -1,0 +1,110 @@
+//sidebar
+$menuBg:#304156;
+$subMenuBg:#1f2d3d;
+$menuHover:#001528;
+
+@mixin background-contain {
+  background: {
+    position: center;
+    size: contain;
+    repeat: no-repeat;
+  }
+}
+@mixin padding-tb($length) {
+  padding: {
+    top: $length;
+    bottom: $length;
+  }
+}
+@mixin padding-lr($length) {
+  padding: {
+    left: $length;
+    right: $length;
+  }
+}
+@mixin margin-tb($length) {
+  margin: {
+    top: $length;
+    bottom: $length;
+  }
+}
+@mixin margin-lr($length) {
+  margin: {
+    left: $length;
+    right: $length;
+  }
+}
+@mixin margin-center {
+  @include margin-lr(auto);
+}
+
+@mixin display-flex {
+  display: -ms-flexbox; // IE10
+  display: -moz-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+@mixin flex-grow($number) {
+           -ms-flex: $number; // IE10
+  -webkit-flex-grow: $number;
+          flex-grow: $number;
+}
+@mixin flex-shrink($number) {
+             -ms-flex: $number; // IE10
+  -webkit-flex-shrink: $number;
+          flex-shrink: $number;
+}
+@mixin flex-direction($keyword) {
+  -webkit-flex-direction: $keyword;
+      -ms-flex-direction: $keyword; // IE10
+          flex-direction: $keyword;
+}
+@mixin flex-wrap($keyword) {
+  @if $keyword == nowrap {
+    -ms-flex-wrap: none;
+  } @else {
+    -ms-flex-wrap: $keyword;
+  }
+  -webkit-flex-wrap: $keyword;
+          flex-wrap: $keyword;
+}
+@mixin flex-content($keyword) {
+  @if $keyword == space-between {
+    -ms-flex-pack: justify;
+  } @else if $keyword == space-around {
+    -ms-flex-pack: distribute;
+  } @else if $keyword == flex-start {
+    -ms-flex-pack: start;
+  } @else if $keyword == flex-end {
+    -ms-flex-pack: end;
+  } @else {
+    -ms-flex-pack: $keyword;
+  }
+  -webkit-justify-content: $keyword;
+          justify-content: $keyword;
+}
+
+@mixin transition($action) {
+  -webkit-transition: $action;
+      -ms-transition: $action; // IE10
+          transition: $action;
+}
+
+@mixin transform($action, $origin: null) {
+  @if $origin {
+    -webkit-transform-origin: $origin;
+        -ms-transform-origin: $origin; // IE10
+            transform-origin: $origin;
+  }
+
+  -webkit-transform: $action;
+      -ms-transform: $action; // IE9
+          transform: $action;
+}
+
+@mixin animation($action) {
+  -webkit-animation: $action;
+      -ms-animation: $action; // IE10
+          animation: $action;
+}

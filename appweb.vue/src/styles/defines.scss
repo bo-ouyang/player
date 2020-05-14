@@ -1,0 +1,176 @@
+
+/* ----- 字体大小 ----- */
+
+$name-size: 0.6rem;
+$sign-size: 0.4rem;
+$font-size: 0.28rem;
+$more-size: 0.04rem;
+$small-size: ($font-size - $more-size);
+$large-size: ($font-size + $more-size);
+$mins-size: 0.2rem;
+
+$font-height: 1.5;
+$tight-height: 1.35;
+$loose-height: 1.75;
+
+/* ----- 前景色 ----- */
+
+$font-color: #ffffff; // ok
+$title-color: #0ceaf3; // ok
+$card-title: #333333;
+$text-color: #cccccc; // ok
+$tipe-color: #666666; // ok
+// $sign-color: #c5c4ca;
+// $icon-color: #b9b2c0;
+$rise-color: #0fbe96;
+$fall-color: #ff3359;
+
+// $warn-color: #f94356;
+$tabon-color: #ffc13f; // ok
+// $award-color: #bd7d43;
+
+/* ----- 背景色 ----- */
+
+$page-bgColor: #18182f; // ok
+$head-bgColor: #333333;
+$cave-bgColor: #444444;
+$panel-bgColor: #242442; // ok
+// $image-bgColor: #e7eaf0;
+
+/* ----- 边框 ----- */
+
+$border-color: #445ab2;
+$border-width: 0.02rem;
+
+$border-radius: 0.1rem;
+$panel-radius: 0.1rem;
+
+/* ----- 边距 ----- */
+
+$form-padding: 0.7rem;
+$wide-padding: 0.6rem;
+// $pace-padding: 0.5rem;
+$card-padding: 0.4rem;
+$page-padding: 0.4rem;
+$away-padding: 0.3rem;
+$cell-padding: 0.24rem;
+$item-padding: 0.2rem;
+$text-padding: 0.1rem;
+
+/* ===== 工具 ===== */
+
+@mixin text-gradient($angle, $stepColors...) {
+  background-image: -webkit-linear-gradient(90deg - $angle, $stepColors);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin background-contain {
+  background: {
+    position: center;
+    repeat: no-repeat;
+    size: contain;
+  }
+}
+@mixin background-gradient($angle, $stepColors...) {
+  background-image: -webkit-linear-gradient(90deg - $angle, $stepColors);
+  background-image: linear-gradient($angle, $stepColors);
+}
+
+@mixin padding-tb($length) {
+  padding: {
+    top: $length;
+    bottom: $length;
+  }
+}
+@mixin padding-lr($length) {
+  padding: {
+    left: $length;
+    right: $length;
+  }
+}
+@mixin margin-tb($length) {
+  margin: {
+    top: $length;
+    bottom: $length;
+  }
+}
+@mixin margin-lr($length) {
+  margin: {
+    left: $length;
+    right: $length;
+  }
+}
+@mixin margin-center {
+  @include margin-lr(auto);
+}
+
+@mixin display-flex {
+  display: -webkit-box; /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
+  display: -webkit-flex; /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
+  display: flex; /* Chrome 29+, Firefox 22+, IE 11+, Opera 12.1/17/18, Android 4.4+ */
+}
+@mixin flex-grow($number) {
+   -webkit-box-flex: $number;
+  -webkit-flex-grow: $number;
+          flex-grow: $number;
+}
+@mixin flex-shrink($number) {
+  -webkit-flex-shrink: $number;
+          flex-shrink: $number;
+}
+@mixin flex-direction($keyword) {
+  @if $keyword == column {
+    -webkit-box-orient: vertical;
+  } @else if $keyword == row {
+    -webkit-box-orient: horizontal;
+  }
+  -webkit-flex-direction: $keyword;
+          flex-direction: $keyword;
+}
+@mixin flex-align($keyword) {
+  @if $keyword == flex-start {
+    -webkit-box-align: start;
+  } @else if $keyword == flex-end {
+    -webkit-box-align: end;
+  } @else {
+    -webkit-box-align: $keyword;
+  }
+  -webkit-align-items: $keyword;
+          align-items: $keyword;
+}
+@mixin flex-content($keyword) {
+  @if $keyword == flex-start {
+    -webkit-box-pack: start;
+  } @else if $keyword == flex-end {
+    -webkit-box-pack: end;
+  } @else {
+    -webkit-box-pack: $keyword;
+  }
+  -webkit-justify-content: $keyword;
+          justify-content: $keyword;
+}
+
+@mixin box-shadow($value) {
+  -webkit-box-shadow: $value;
+          box-shadow: $value;
+}
+
+@mixin transition($action) {
+  -webkit-transition: $action;
+          transition: $action;
+}
+
+@mixin transform($action, $origin: null) {
+  @if $origin {
+    -webkit-transform-origin: $origin;
+            transform-origin: $origin;
+  }
+  -webkit-transform: $action;
+          transform: $action;
+}
+
+@mixin animation($action) {
+  -webkit-animation: $action;
+          animation: $action;
+}

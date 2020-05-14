@@ -1,0 +1,70 @@
+
+.v-modal {
+  opacity: 0.8;
+}
+
+.mint {
+
+  &-toast {
+    z-index: 5000;
+  }
+
+  // &-popup {
+  //   &.img-view {
+  //     width: calc(100% - ($card-padding * 2));
+  //     height: calc(100% - ($card-padding * 2));
+  //     background-color: transparent;
+  //   }
+  // }
+
+  &-msgbox {
+    width: 5.8rem;
+    border-radius: 0.08rem;
+    font-size: $font-size;
+    background-color: $panel-bgColor;
+
+    &-header {
+      @include padding-tb(0.26rem);
+      @include box-shadow(0 1px 0 0 rgba($color: $border-color, $alpha: 0.6));
+    }
+    &-title {
+      color: $title-color;
+      font-size: $large-size;
+      font-weight: normal;
+    }
+    &-content {
+      padding: $away-padding;
+      border-bottom: 0;
+    }
+    &-message {
+      color: inherit;
+    }
+    &-btns {
+      height: auto;
+      line-height: inherit;
+      @include box-shadow(0 -1px 0 0 rgba($color: $border-color, $alpha: 0.6));
+    }
+    &-btn {
+      @include padding-tb(0.23rem);
+      line-height: inherit;
+      background-color: transparent;
+
+      &:active {
+        background-color: transparent;
+      }
+    }
+    &-cancel {
+      border-right: 0;
+      @include box-shadow(1px 0 0 0 rgba($color: $border-color, $alpha: 0.6));
+
+      &:active {
+        color: inherit;
+      }
+    }
+    &-confirm,
+    &-confirm:active {
+      color: $card-title;
+      background-color: $tabon-color;
+    }
+  }
+}
